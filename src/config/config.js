@@ -27,7 +27,8 @@ export const config = {
         account: process.env.MAILACCOUNT,
         appgoogle: process.env.appgoogle,
         passgoogle: process.env.passgoogle
-    }
+    },
+  
 
     
 };

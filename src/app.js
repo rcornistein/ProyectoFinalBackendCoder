@@ -37,7 +37,7 @@ import swaggerUI from "swagger-ui-express";
 
 
 //servidor express
-const port=process.env.port|| 8080;
+const port=process.env.PORT|| 8080;
 const app=express();
 
 
@@ -47,6 +47,7 @@ const app=express();
 
 
 // se activa el servidor
+//console.log(process.env.PORT)
 const httpServer= app.listen(port,()=> logger.info(`Server listening on port ${port}`));
 
 
