@@ -1,0 +1,202 @@
+paths:
+  /api/products/:
+    get:
+      summary: returns all products
+      description: This method returns limited quantity of products sorted by price, category and availability
+      parameters:
+        - name: limit
+          in: query
+          description: 'maximum numbers of items returned'
+          example: 10
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: 'returns items located in the selected page'
+          example: 1
+          schema:
+            type: integer
+        - name: order
+          in: query
+          description: 'selects order criterium'
+          example: "van"
+          schema:
+            type: string
+      tags:
+        - products
+      responses:
+        "200":
+          description: Returns paginated products in json format
+          content:
+            application/json:
+              schema:
+                  $ref: "#components/schemas/getProducts"
+        "500":
+          description: there's a server issue
+
+  /api/products/{pid}:
+    get:
+      summary: return product with pid _id
+      description: This method returns pid product info
+      parameters:
+        - name: pid
+          in: query params
+          required: true
+          description: 'mongo _id '
+          example: '657c65b0e044db6118fbaa76'
+          schema:
+            type: ObjectId
+      tags:
+        - products
+      responses:
+        "200":
+          description: pid data
+          content:
+            application/json:
+              schema:
+                  $ref: "#components/schemas/product"
+        "500":
+          description: there's a server issue
+
+  /api/products:
+    post:
+      summary: summit a new product
+      tags:
+        - products
+      description: This method creates a new product and saves it into a  mongodatabase table. The ownner is deduced from the auth process.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:  
+              type: object  
+              properties:
+                title: 
+                  type: string
+                  description: product title 
+                  example: "Volt"
+                description: 
+                  type: string
+                  description: product description
+                  example: 'Tergo aestus tener veniam uter.'
+                price:
+                  type: number
+                  description: product price
+                  example: 10236
+                code: 
+                  type: string
+                  description: product code
+                  unique: true
+                  example: '125463'
+                thumbnail:
+                  type: string
+                  description: product image link
+                  example: 'https://loremflickr.com/400/600/car?lock=6967498677157888'
+                category:
+                  type: string
+                  description: product category
+                  example: 'van'
+      responses:
+            "200":
+              description: product added
+            "500":
+              description: there's a server issue
+  /api/products/{productId}:
+    delete:
+      summary: 'delete product pid'
+      description: 'This method deletes a product'
+      parameters:
+          - name: productId
+            in: query params
+            required: true
+            description: 'mongo _id '
+            example: '657c65b0e044db6118fbaa76'
+            schema:
+              type: ObjectId
+      tags:
+          - products
+      responses:
+            "200":
+              description: product deleted
+            "500":
+              description: there's a server issue
+
+
+components:
+  schemas:
+    product:
+      type: object  
+      properties:
+        _id: 
+          type: ObjectId
+          description: mongo self-generated id
+          example: "657c65b0e044db6118fbaa76"
+        title: 
+          type: string
+          description: product title 
+          example: "Volt"
+        description: 
+          type: string
+          description: product description
+          example: 'Tergo aestus tener veniam uter.'
+        price:
+          type: number
+          description: product price
+          example: 10236
+        code: 
+          type: string
+          description: product code
+          unique: true
+          example: '125463'
+        thumbnail:
+          type: string
+          description: product image link
+          example: 'https://loremflickr.com/400/600/car?lock=6967498677157888'
+        category:
+          type: string
+          description: product category
+          example: 'van'
+        owner:
+          type: ObjectId
+          description: mongo ObjectId refered to product's owner user. Must be a user.
+          example: '657c65b0e044db6118fbaa76'
+
+    getProducts:
+      type: object
+      properties:
+        payload:
+          $ref: '#components/schemas/product'
+        totalPages: 
+          type: integer
+          description: total pages of the query
+          example: 1
+        prevPage:
+          type: integer
+          description: previuos page of current showed, null if it doens't exist
+          example: 1
+        nextPage:
+          type: integer
+          description: next  page of current showed, null if it doens't exist
+          example: 2
+        page:
+          type: integer
+          description: current page
+          example: 2
+        hasPrevPage:
+          type: boolean
+          description: return true if prevPage exists
+          example: true
+        hasNextPage:
+          type: boolean
+          description: return true if nextPage exists
+          example: true
+        prevLink:
+          type: string
+          description: hasPrevLink link
+          example: '/api/products?limit=10&page=1'
+        nextLink:
+          type: string
+          description: hasPrevLink link
+          example: '/api/products?limit=10&page=2'
+
+

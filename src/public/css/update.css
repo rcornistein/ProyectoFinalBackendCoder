@@ -1,0 +1,89 @@
+
+body{
+    background-color:    #FADFD9
+    
+    
+    ;
+}
+main{
+    border: 5px;
+    background-color: white;
+    padding: 20px;
+}
+
+#principal{
+    max-width: 1000px;
+    border: 1px;
+   
+}
+
+#group_code_file{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    column-gap: 50px;
+}
+
+#group_price_cat_stock{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+
+}
+
+#submit{
+    background-color: #FEC0B2;
+    border-color: #FEC0B2;
+}
+
+#menu_paginator{
+
+
+
+    padding: 3rem;
+    max-width: 800px;
+
+    display: grid;
+    grid-template-columns: 1fr   1fr  1fr;
+    column-gap: 2rem;
+    row-gap: 2rem   ;
+
+    place-items: left;
+   
+
+   
+}   
+
+#paginator{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+
+}
+
+#filters {
+    width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 1rem;
+
+   
+
+}
+
+
+#filters div{
+    margin: auto;
+    
+    
+}
+.stock{
+    font-size: small;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#welcome{
+    text-align: center;
+}

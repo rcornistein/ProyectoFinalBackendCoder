@@ -1,0 +1,126 @@
+paths:
+  /api/carts/:
+    get:
+      summary: Returns all carts
+      description: This method returns all the carts    
+      tags:
+        - carts
+      responses:
+        "200":
+          description: Returns carts in json format
+          content:
+            application/json:
+              schema:
+                  $ref: "#components/schemas/carts"
+        "500":
+          description: there's a server issue
+    post:
+      summary: Creates a new cart
+      tags:
+        - carts
+      description: This endpoint creates a new cart ans saves it into a mongodatabase table
+      responses:
+          "200":
+             description: cart added
+             content:
+              application/json:
+                schema:
+                  $ref: "#components/schemas/postCart"
+                 
+                     
+          "500":
+             description: there's a server issue
+
+  /api/carts/{cid}:
+      get:
+        summary: returns info of cid cart
+        description: This method returns cid cart id and products
+        parameters:
+          - name: cid
+            in: query params
+            required: true
+            description: 'mongo _id '
+            example: '657c65b0e044db6118fbaa76'
+            schema:
+              type: ObjectId
+        tags:
+          - carts
+        responses:
+          "200":
+            description: Returns cart cid in json format
+            content:
+              application/json:
+                schema:
+                    $ref: "#components/schemas/carts"
+          "500":
+            description: there's a server issue
+
+  /api/carts/{cid}/products/{pid}:
+      delete:
+        summary: 'delete product pid product to cid cart'
+        description: 'This method deletes product pid carts cid'
+        parameters:
+          - name: cid
+            in: query params
+            required: true
+            description: 'mongo _id '
+            example: '657c65b0e044db6118fbaa76'
+            schema:
+              type: ObjectId
+          - name: pid
+            in: query params
+            required: true
+            description: 'mongo _id '
+            example: '657c65b0e044db6118fbaa76'
+            schema:
+              type: ObjectId
+            
+        tags:
+          - carts
+        responses:
+          "200":
+            description: Returns cart cid in json format witouht pid in products array
+            content:
+              application/json:
+                schema:
+                    $ref: "#components/schemas/carts"
+          "500":
+            description: there's a server issue
+    
+
+
+components:
+  schemas:
+    carts:
+      type: object  
+      properties:
+        _id: 
+          type: ObjectId
+          description: mongo self-generated id
+          example: "657c65b0e044db6118fbaa76"  
+        products:
+          type: array
+          items:
+            properties:
+              pid: 
+                type: ObjectId
+                description: mongo self-generated id of a product
+                example: "657c65b0e044db6118fbaa76"
+
+              quantity:
+                  type: number
+                  description: quantity of product
+                  example: 1
+    postCart:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: mongo self-generated id
+          example: "657c65b0e044db6118fbaa76"
+        products: 
+          type: array
+          description: 'empty array []'
+          example: []
+
+

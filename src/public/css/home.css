@@ -1,0 +1,28 @@
+
+#product_table {
+  
+       
+      
+      
+        padding: 10px;
+        display: flex ;
+        /*align-items: center;*/
+        justify-content: center;
+       
+       
+    
+        
+     
+
+      /* background-color: black;*/
+    
+}
+
+#table_1{
+  
+  max-width: 800px;
+}
+
+h1{
+  text-align: center;
+}

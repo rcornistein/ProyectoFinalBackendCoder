@@ -1,0 +1,399 @@
+
+		<nav>
+			<header class="container mt-5">
+		
+	  <div class="row">
+		  
+		<div class="col-md-3">
+			
+				<!-- img src="img/logo.png"--> 
+				<h1 class="text-dark"><span>Your<span class="text-secondary">Car.</span></span></h1>
+				<small class="text-dark">Car Shopping Mall</small>
+				
+
+		</div>
+
+		{{!--    <div class="col-md-6">
+		   
+		 
+	
+
+		
+      
+		  </div>  --}}
+
+	  	<div class="col-md-6">
+
+      {{#if IsAdmin}}
+
+      <div class="dropdown float-right" id="mini-user" data-component-user>
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="bi bi-database-fill-gear d-inline-block" style="font-size:42px"></i>&ensp; 
+				
+				<div class="d-inline-block text-dark" data-if="login">
+				
+					<span class="font-weight-bold">Admin </span>
+				</div>
+				
+			  </a>
+
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				      <a  id="createProducts" class="dropdown-item" href="#">Create products</a>
+			        
+				      <a  id="adminProducts" class="dropdown-item" href="#">Update products</a>
+			      
+				      <a  id="adminUsers" class="dropdown-item" href="#">Admin Users</a>
+			      </div>
+   
+			{{/if}} 
+
+
+      {{#if IsUser}}
+
+      <div class="dropdown float-right" id="mini-user" data-component-user>
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="bi bi-chat d-inline-block" style="font-size:42px"></i>&ensp; 
+				
+				<div class="d-inline-block text-dark" data-if="login">
+				
+					<span class="font-weight-bold">Chat</span>
+				</div>
+				
+			  </a>
+
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				<a  id="chat" class="dropdown-item" href="#">Chat with the comunity</a>
+		
+			  </div>
+
+            <div class="dropdown float-right data-component-user" id="mini-user" >
+		<a class="btn btn-link  bg-faded p-0 chevron-big " href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				
+   
+          <DIV>
+            <div style="position: absolute;
+                    background-color: rgb(255, 30, 30);
+                    color: white;
+                    border-radius: 50%;
+                  padding: 5px 8px;
+                  font-size: 14px;
+                  top: 10px;
+                  right:158px; display:none" id='badge' >  </div>
+            <i class="bi bi-cart d-inline-block d-inline-block" style="font-size:42px">
+          
+              
+            
+            </i> 
+        </DIV>
+				
+				<div class="d-inline-block text-dark" data-if="login">
+        
+					{{!-- <span class="font-weight-bold">View cart  </span> --}}
+           
+				</div>
+			{{/if}}
+
+       {{#if IsPremium}}
+
+       <div class="dropdown float-right" id="mini-user" data-component-user>
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="bi bi-database-fill-gear d-inline-block" style="font-size:42px"></i>&ensp; 
+				
+				<div class="d-inline-block text-dark" data-if="login">
+				
+					<span class="font-weight-bold">Admin </span>
+				</div>
+				
+			  </a>
+
+		       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				      <a  id="createProducts" class="dropdown-item" href="#">Create products</a>
+			       
+				      <a  id="adminProducts" class="dropdown-item" href="#">Update products</a>
+			      </div>
+
+      <div class="dropdown float-right" id="mini-user" data-component-user>
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="bi bi-chat d-inline-block" style="font-size:42px"></i>&ensp; 
+				
+				<div class="d-inline-block text-dark" data-if="login">
+				
+					<span class="font-weight-bold">Chat</span>
+				</div>
+				
+			  </a>
+
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				<a  id="chat" class="dropdown-item" href="#">Chat with the comunity</a>
+		
+			  </div>
+            <div class="dropdown float-right data-component-user" id="mini-user" >
+		<a class="btn btn-link  bg-faded p-0 chevron-big " href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				
+   
+          <DIV>
+            <div style="position: absolute;
+                    background-color: rgb(255, 30, 30);
+                    color: white;
+                    border-radius: 50%;
+                  padding: 5px 8px;
+                  font-size: 14px;
+                  top: 10px;
+                  right:158px; display:none" id='badge' >  </div>
+            <i class="bi bi-cart d-inline-block d-inline-block" style="font-size:42px">
+          
+              
+            
+            </i> 
+        </DIV>
+				
+				<div class="d-inline-block text-dark" data-if="login">
+        
+					{{!-- <span class="font-weight-bold">View cart  </span> --}}
+           
+				</div>
+			{{/if}}
+
+      
+
+
+
+		
+			 
+
+
+   </a>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          
+				<a  id="viewCart" class="dropdown-item" href="#">Check out</a>
+		
+			  </div>
+
+
+			
+			<div class="dropdown float-right" id="mini-user" data-component-user>
+			  <a class="btn btn-link dropdown-toggle bg-faded p-0 chevron-big" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="bi bi-person d-inline-block" style="font-size:42px"></i>&ensp; 
+				
+				<div class="d-inline-block text-dark" data-if="login">
+				
+					<span class="font-weight-bold">Log Out</span>
+				</div>
+				
+			  </a>
+
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+				<a  id="logout" class="dropdown-item" href="#">Log Out</a>
+		
+			  </div>
+			</div>
+
+
+
+			</div>
+      
+			
+		  </div>
+	  
+	  </div>
+
+	
+   
+
+
+    </header>
+		</nav><br>
+
+        <main class="container-fluid m-auto">
+			<section class="row" style="height: 82vh">
+
+				<section class="col-12 overflow-auto"   >
+        <div id="welcome"> <h3>Welcome {{user}}!! Your rol is {{rol}}  </h3></div>
+
+            <div id="menu_paginator">
+
+        <form class=" row" id="filters">
+	
+				
+				  {{!-- <input type="text" class="form-control default-font-size" placeholder="Search product" aria-label="Search product"> --}}
+            <div>
+					  <select class="custom-select  form-control-lg no-border-x default-font-size" id="limit">
+						  <option value="10"> 10 items </option>
+              <option value="1">1 item</option>
+              
+              <option value="20">20 items</option>
+              <option value="50">50 items</option>
+					  </select>
+          </div>
+            <div>
+            	<select class="custom-select  form-control-lg no-border-x default-font-size" id="order">
+						  <option value="none">Order by price</option>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+             
+					    </select>
+              </div>
+
+               <div>
+            	<select class="custom-select  form-control-lg no-border-x default-font-size" id="stock">
+						  <option value="-1">Filter by stock</option>
+              <option value="1">Available</option>
+              <option value="0">Not available</option>
+              
+					    </select>
+
+              </div>
+
+             
+            	
+          <div class="input-group input-group-lg"  data-component-category>
+				  {{!-- <input type="text" class="form-control default-font-size" placeholder="Search product" aria-label="Search product"> --}}
+
+                    <select id="category" class="custom-select input-group-append form-control-lg no-border-x default-font-size">
+                        <option selected="All categories">All categories</option>
+                       {{#each categories}}
+                          <option value="{{this.category}}">{{this.category}}</option>
+                       {{/each}} 
+                     
+                      
+                  
+                      </select>
+                    
+                  
+				  </div>
+            <div class="input-group-append">
+                      <button class="btn btn-primary" type="button" id="search"><i class="bi bi-search"> Search</i></button>
+            </div>
+             
+
+            
+				  
+			
+				
+			    </form>
+         
+          </div>
+            <div>
+              <nav aria-label="..." id="paginator"> 
+                      
+                      <p id="pag_ant" style="display: none;">{{prevLink}} </p>
+                      <p id="pag_sig" style="display: none;">{{nextLink}} </p>
+
+                      <p id="pag_TotalPages" style="display: none;">{{totalPages}} </p>
+                      <p id="pag_Page" style="display: none;">{{page}} </p>
+
+
+                
+               
+               
+                      <ul class="pagination" id="paginator_ul">
+                        
+                      </ul>
+              </nav>
+                   
+                 <p style="text-align: center;" > Page {{page}} of {{totalPages}}   </p>
+              </div>
+            <div class="container" >
+                        <div id="lista" class="row p-1">
+                   {{#if   IsUser }}
+                         {{#each products}}
+
+                            <div class="col-3" id="{{this.category}}">
+                                <div class="card m-1">
+                         
+                                    <img src= {{this.thumbnail}} class="h-75 card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle">{{this.category}}  </h6>
+                                        <h5 class="card-title">{{this.title}}</h5>
+                                      
+                                      
+                                        <h6 class="card-subtitle">${{this.price}}  </h6>
+                                      
+                                        <p class="card-text ">{{this.description}}</p>
+									
+                                        
+                                       
+                                            <a  id={{ this._id}} href="#" class="btn btn-primary" onclick="addproductToCart('{{ this._id}}')"> Add</a>
+                                             <a  id={{ this._id}}_remove href="#" class="btn btn-primary" onclick=""> Remove</a>
+
+								                   
+								
+
+                                        <p class="card-text stock">{{this.available}} </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                       {{/each}}
+						{{/if}}
+             {{#if   IsPremium }}
+                {{#each products}}
+
+                      
+
+                        
+
+                            <div class="col-3" id="{{this.category}}">
+                                <div class="card m-1">
+                         
+                                    <img src= {{this.thumbnail}} class="h-75 card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle">{{this.category}}  </h6>
+                                        <h5 class="card-title">{{this.title}}</h5>
+                                      
+                                      
+                                        <h6 class="card-subtitle">${{this.price}}  </h6>
+                                      
+                                        <p class="card-text ">{{this.description}}</p>
+
+                              {{#if this.canBuy}}
+                                        
+                                      
+                                            <a  id={{ this._id}} href="#" class="btn btn-primary" onclick="addproductToCart('{{ this._id}}')"> Add</a>
+                                                 <a  id={{ this._id}}_remove href="#" class="btn btn-primary" onclick=""> Remove</a>
+								                      
+                             
+                              {{/if}}
+                                        <p class="card-text stock">{{this.available}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                  
+                       {{/each}}
+						{{/if}}
+
+						 {{#if IsAdmin}} 
+                         {{#each products}}
+
+                            <div class="col-3" id="{{this.category}}">
+                                <div class="card m-1">
+                         
+                                    <img src= {{this.thumbnail}} class="h-75 card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle">{{this.category}}  </h6>
+                                        <h5 class="card-title">{{this.title}}</h5>
+                                      
+                                      
+                                        <h6 class="card-subtitle">${{this.price}}  </h6>
+                                      
+                                        <p class="card-text ">{{this.description}}</p>
+									
+                                       
+								
+
+                                        <p class="card-text stock">{{this.available}} </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{/each}}
+						{{/if}}
+                          </div>
+
+            </div> 
+          
+				</section>
+			</section>
+		</main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
+	<script src="/js/products.js"></script>

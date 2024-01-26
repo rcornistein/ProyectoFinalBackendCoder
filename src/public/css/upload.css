@@ -1,0 +1,45 @@
+
+body{
+    background-color:    #FADFD9
+    
+    
+    ;
+}
+main{
+    border: 5px;
+    background-color: white;
+    padding: 20px;
+}
+
+#principal{
+    max-width: 1000px;
+    border: 1px;
+   
+}
+
+#group_code_file{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    column-gap: 50px;
+}
+
+#group_price_cat_stock{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+    background-color: #FEC0B2;
+
+}
+
+#submit{
+    background-color: #FEC0B2;
+    border-color: #FEC0B2;
+}
+
+
+
+
+
+
+
+

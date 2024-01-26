@@ -1,0 +1,43 @@
+<h1>Products</h1>
+
+
+<br>
+<br>
+
+<div id="product_table"> 
+
+   
+
+    <table id="table_1" class="table">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+             <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+                <tr>
+                    <td >{{this._id}}</td>
+                    <td> {{this.title}} </td>
+                    <td>  {{this.price}}</td>
+                {{#if this.canEdit}}
+                    <td> <input class="btn btn-primary" type="button" value="delete" onclick="deleteProduct('{{this._id}}')"> </td>
+                    <td> <input class="btn btn-primary" type="button" value="update" onclick="updateProduct('{{this._id}}')"> </td>
+                {{else}}
+                    <td> <input class="btn btn-primary" disabled type="button" value="delete" onclick="deleteProduct('{{this._id}}')"> </td>
+                    <td> <input class="btn btn-primary" disabled type="button" value="update" onclick="updateProduct('{{this._id}}')"> </td>
+
+                {{/if}}
+                </tr>
+              {{/each}}
+        </tbody>
+    </table>
+
+     
+</div>
+
+<script src="/js/crudProducts.js"></script>

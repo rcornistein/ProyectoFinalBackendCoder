@@ -1,0 +1,67 @@
+<h1>Users Admin</h1>
+
+<br>
+
+<input class="btn btn-primary" type="button" value="Delete iddle users" onclick="deleteIdleUsers()"> 
+
+
+<br>
+<br>
+ <div >
+             <h6 class="btn btn-light btn-sm"><a href="/products" ><i
+            class="bi bi-arrow-return-left"></i>Back to shop</a></h6>
+ </div>
+
+<div class="container" id="product_table"> 
+
+     
+
+    <table id="table_1" class="table">
+        <thead>
+            <tr>
+  
+            <th scope="col"> Name</th>
+            <th scope="col">Email</th>
+             <th scope="col">Role</th>
+            <th scope="col">Last connection</th>
+            <th scope="col">Change Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+
+              
+                <tr>
+  
+                    <td> {{this.name}} </td>
+                    <td>  {{this.email}}</td>
+                    <td>  {{this.role}}</td>
+                    <td>  {{this.last_connectionLocal}}</td>
+                    
+                 
+                {{#if this.show}}
+                    <td> 
+                    <select id="role_{{this._id}}" style="right-padding: 5px; width:auto" "form-select">
+                        <option value=""> Please choose an option </option>
+                        <option value="user">User</option>
+                        <option value="premium">Premium</option>
+                        <option value="admin">Admin</option>
+
+                    </select>  
+                  
+                    <input class="btn btn-primary" type="button" value="update" onclick="updateUser('{{ this._id}}')"> 
+                    </td>
+             
+                </tr>
+                {{/if}}
+           
+              {{/each}}
+        </tbody>
+    </table>
+
+
+     
+</div>
+
+
+<script src="/js/adminUsers.js"></script>
