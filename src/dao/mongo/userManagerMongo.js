@@ -48,11 +48,10 @@ export class userManagerMongo{
      async getUserById(userId){
         try {
        
-           const resultado = await this.model.findById(userId).lean();;
-           
+           const resultado = await this.model.findById(userId).lean();
 
-        
-           
+    
+      
             return resultado;
             
         } catch (error) {

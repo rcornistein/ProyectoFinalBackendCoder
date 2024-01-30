@@ -223,8 +223,8 @@ static getProducts = async (req,res)=>{
                 ,page
                 ,hasPrevPage: currentProducts.hasPrevPage
                 ,hasNextPage: currentProducts.hasNextPage
-                ,prevLink: currentProducts.hasPrevPage? `http://localhost:8080/products?limit=${limit}&page=${page-1}&order=${order}&category=${category.split(' ').join('%20')}&stock=${stock}`: null
-                ,nextLink: currentProducts.hasNextPage? `http://localhost:8080/products?limit=${limit}&page=${page+1}&order=${order}&category=${category.split(' ').join('%20')}&stock=${stock}`: null
+                ,prevLink: currentProducts.hasPrevPage? `/products?limit=${limit}&page=${page-1}&order=${order}&category=${category.split(' ').join('%20')}&stock=${stock}`: null
+                ,nextLink: currentProducts.hasNextPage? `/products?limit=${limit}&page=${page+1}&order=${order}&category=${category.split(' ').join('%20')}&stock=${stock}`: null
               };
              
     
@@ -304,24 +304,46 @@ static getProducts = async (req,res)=>{
     try {
         
         const currentProducts = await ProductsService.getProducts();  
-        
-        currentProducts.forEach(element => {    
-            element.canEdit= element.owner._id.toString()===req.user.id ||req.user.role==='admin'
-            
-         });
-
 
        
+
+        for (let element of currentProducts){
+
+           
+            try {
+                element.canEdit= element.owner._id.toString()===req.user.id ||req.user.role==='admin'
+                let email=''
+                let productOnw=await UsersService.getUserById(element.owner._id.toString());
+                if(productOnw)
+                {email=productOnw.email;
+                }
+                else{
+                    email= 'admin@coder.com'
+                }       
+                element.ownerEmail= email;
+                
+            } catch (error) {
+
+                console.log(error);
+                
+            }
+        }
+        
+       
+
+      
+         
         const data={
             products: currentProducts,
             style: "home.css"
         }
+       
         res.render("adminProducts",data);
         
     } catch (error) {
-        res.status(error.status || 500).send({
+        res.status(error.status || 200).send({
             error: {
-              status: error.status || 500,
+              status: error.status || 200,
               message: error.message || "Server error",
             },
           });

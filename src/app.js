@@ -47,7 +47,7 @@ const app=express();
 
 
 // se activa el servidor
-//console.log(process.env.PORT)
+
 const httpServer= app.listen(port,()=> logger.info(`Server listening on port ${port}`));
 
 
@@ -128,7 +128,7 @@ app.use('/api/carts',cartsRouter);
 app.use(viewsRouter);
 app.use('/api/users',userRouter);
 app.get('/', function(req, res){
-  res.redirect('api/users/login');
+  res.redirect('/api/users/login');
 });
 
 app.use(errorHandler);

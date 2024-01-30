@@ -10,6 +10,9 @@ import {productCreatorError} from '../service/productCreatorErrorService.js'
 import { CustomError } from "../service/customErrorService.js";
 import { ProductsService } from "../service/products.service.js";
 import { logger } from "../helpers/logger.js";
+import { transporter } from "../config/gmail.js"
+import {deleteProductEmailTemplate} from "../config/gmail.js"
+import { UsersService } from "../service/users.service.js";
 
 export class ProductsController{
 
@@ -214,24 +217,43 @@ static postProduct = async (req,res) => {
     try {
 
       const id=req.params.productId;
+      let product= await  ProductsService.getProductById(id);
+    
 
-
-
-      const product= await  ProductsService.getProductById(id);
-
-
-  
-      if((req.user.role === "premium" && product.owner.toString() === req.user.id.toString()) || req.user.role === "admin"){
-      const resultDelete= await  ProductsService.deleteProduct(id)
-      const currentProducts = await ProductsService.getProducts();
-
-       req.socketServer.sockets.emit('realTimeproducts', currentProducts); 
-      res.status(200).json(`product ${id} deleted`);
+      if((req.user.role === "premium" && product.owner._id.toString() === req.user.id.toString()) || req.user.role === "admin"){
+      
+       const resultDelete= await  ProductsService.deleteProduct(id)
+        let email;
+      let productOnw=await UsersService.getUserById(product.owner._id.toString());
+      if(productOnw)
+      {email=productOnw.email;
+      
       }
       else{
-        res.status(200).json(`You don't have access to delete this product`);
+          email= 'admin@coder.com'
       }
-    } catch (error) {
+
+      if(email){
+
+    
+    
+        const result = await transporter.sendMail({
+            from:config.gmail.account,
+            to: email,
+            subject:`Product notification`,
+            html: deleteProductEmailTemplate(`${email}`,`${id}`)
+        });
+
+      
+      }
+
+      res.status(200).send({result: `product ${id} deleted`});
+      }
+      else{
+        res.status(200).send({result:`You don't have access to delete this product`});
+      }
+    } 
+    catch (error) {
   
       res.status(error.status || 500).send({
         error: {

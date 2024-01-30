@@ -270,3 +270,57 @@ try {
 
 }
 
+const deleteProductToCart= async(pid) =>{
+     try {
+     
+          let cid=getCookie('cartId');
+          
+     
+     
+          const url = `${hostname}/api/carts/${cid}/products/${pid}`;
+         
+          const requestOptions = {
+               method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                   "quantity": 1          })
+           };
+         
+           const result = await fetch(url, requestOptions)
+           const final = await result.json();
+           console.log(final)
+        
+     
+          if (final){
+             const products=final.cart.products;  
+             let totalProducts=0;
+     
+     
+     
+             for (const prod of  products) {
+               totalProducts = totalProducts+prod.quantity;
+              
+             }
+             console.log(totalProducts);
+               
+             let badge=document.getElementById('badge');
+               badge.style.display = "inline";
+              badge.innerHTML =totalProducts.toString();
+     
+     
+              setCookie ('products', totalProducts.toString(), 1);
+        
+             alert('Product removed!');
+     
+          }
+          else
+          {
+               alert('Cannot remove product');
+          }
+     } catch (error) {
+     
+          console.log(error);
+          
+     }
+     
+     }

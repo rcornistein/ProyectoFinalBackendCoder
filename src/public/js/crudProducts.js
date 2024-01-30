@@ -7,9 +7,18 @@
 
     const result= await fetch(`api/products/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        }
+       
     });
-    window.alert(await result.json());
-    location.reload();
+
+
+    let message=await result.json();
+
+    
+    window.alert( message.result);
+   // location.reload();
 
     
   } catch (err) {

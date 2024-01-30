@@ -120,7 +120,7 @@ static postLogin = async (req,res)=>{
                 const loginForm = req.body;
                   
                 const user = await UsersService.getUserByMail({ email:loginForm.InputEmail});
-                if(user){
+                if(user[0]){
         
                  return res.render("login",{ style: 'logIn.css',logError:true,error:"User already exists"});
                 
@@ -242,7 +242,7 @@ static postSignin = async (req,res)=>{
             const loginForm = req.body;
               
             const user = await UsersService.getUserByMail({ email:loginForm.InputEmail});
-            if(!user){
+            if(!user[0]){
     
                 return res.render("login",{ style: 'logIn.css',logError:true,error:"User already doesn't exists"});
             }
@@ -252,7 +252,7 @@ static postSignin = async (req,res)=>{
                     from:config.gmail.account,
                     to:loginForm.InputEmail,
                     subject:"Your Card password generation",
-                    html: emailTemplate(`${loginForm.InputEmail}`)
+                    html: emailTemplate(`${loginForm.InputEmail}`, `${req.get('host')}`)
                 });
            
                 res.json({status:"success", message:"Email already send, please check you inbox"});
@@ -284,7 +284,7 @@ static postUpdatePassword = async(req,res)=>{
         const loginForm = req.body;
             const user = await UsersService.getUserByMail({ email:loginForm.InputEmail})
 
-            if(!user){
+            if(!user[0]){
                 return res.render("login",{ style: 'logIn.css',logError:true,error:"User already doesn't exists"});
             }
             else{

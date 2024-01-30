@@ -3,8 +3,12 @@
 
 <br>
 <br>
+ <div >
+             <h6 class="btn btn-light btn-sm"><a href="/products" ><i
+            class="bi bi-arrow-return-left"></i>Back to shop</a></h6>
+ </div>
 
-<div id="product_table"> 
+<div id="product_table" class="container"> 
 
    
 
@@ -14,6 +18,7 @@
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Price</th>
+            <th scope="col">Owner</th>
              <th scope="col">Delete</th>
             <th scope="col">Update</th>
             </tr>
@@ -23,7 +28,9 @@
                 <tr>
                     <td >{{this._id}}</td>
                     <td> {{this.title}} </td>
-                    <td>  {{this.price}}</td>
+                    <td>  ${{this.price}}</td>
+                    <td>  {{this.ownerEmail}}</td>
+
                 {{#if this.canEdit}}
                     <td> <input class="btn btn-primary" type="button" value="delete" onclick="deleteProduct('{{this._id}}')"> </td>
                     <td> <input class="btn btn-primary" type="button" value="update" onclick="updateProduct('{{this._id}}')"> </td>

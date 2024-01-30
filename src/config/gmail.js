@@ -15,9 +15,10 @@ export const transporter = nodemailer.createTransport({
     }
 });
 
-export const emailTemplate = (user)=> {
+export const emailTemplate = (user,host)=> {
     
     const token = generateTokenMail(user);
+  
     return `
 
 
@@ -32,10 +33,31 @@ export const emailTemplate = (user)=> {
 
      
         <div style=" font-size: 18px; color: #333; line-height: 1; margin: 0; padding: 0; mso-table-lspace:0; mso-table-rspace:0;">
-        <a href="http://localhost:8080/api/users/resetPassword/${token}" style="text-align:center; padding:10px 10px 10px 10px; background-color:grey; text-decoration: none; color: #333;  font-family: Arial, arial, sans-serif;" border="1"> RESET PASSWORD</a>
+        <a href="http://${host}/api/users/resetPassword/${token}" style="text-align:center; padding:10px 10px 10px 10px; background-color:grey; text-decoration: none; color: #333;  font-family: Arial, arial, sans-serif;" border="1"> RESET PASSWORD</a>
         <br>
         <br>
         </div>
+
+    </div>
+`;}
+
+
+export const deleteProductEmailTemplate = (user,id)=> {
+    
+  
+    return `
+
+
+    <div>
+        <h1> Hello ${user}!!</h1>
+
+        <p style="padding: 5px"> 
+        We inform you that our product #${id} has been discontinued.
+        
+        </p>
+       
+        <br>
+        <br>
 
     </div>
 `;}

@@ -98,22 +98,46 @@ export class CartManagerMongo{
         try {
            
           
-            const cart= await this.model.findById(cartId).lean(); 
-           if(cart){
-            let product= cart.products.find(prod=> prod.pid._id.toString()===productId);
-         
+            let cart= await this.model.findById(cartId).lean(); 
+     
 
-            if(product){
-               let newProducts= cart.products.filter(prod=>prod.pid._id.toString()!=productId);   
-               cart.products= newProducts;
+         if(cart){
+
+                let product= cart.products.find(prod=> prod.pid._id.toString()===productId); 
+      
+                if(product.quantity>1){
+
+                    for (let i = 0; i < cart.lenght; i++) {
+                        str = str + i;
+                      }
+                      
+                    
+                    for(let elem of cart.products){
+                        
+                                if(elem.pid._id.toString()== productId){
+                                elem.quantity= elem.quantity-1                
+                                 }                 
+                         }
+             
+                   
+
+                     }
+                 else{
+
+                    let newProducts2=cart.products.filter(prod=>prod.pid._id.toString()!=productId);   
+                    cart.products= newProducts2
             }
-            else{
-                throw  new Error(`Could not delete product to cart because it is not in the car or it doesn't exist`);
+              
+                let res= await this.model.findByIdAndUpdate({"_id": cartId},cart);
+
+                res=await this.model.findById(cartId)
+            
+                return res;
+              
+              
             }
-    
-            const res= await this.model.findByIdAndUpdate({"_id": cartId},cart);
-            return res;
-        }
+            
+        
         else{
             throw  new Error(`Could not delete product to cart because the cart doesn't exist`);
         }

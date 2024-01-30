@@ -118,9 +118,9 @@ static post = async (req,res) => {
 
 
     } catch (error) {
-      res.status(error.status || 500).send({
+      res.status(error.status || 200).send({
           error: {
-            status: error.status || 500,
+            status: error.status || 200,
             message: error.message || "Server error",
           },
         });
@@ -141,7 +141,7 @@ static delete = async (req,res) => {
 
          const result = await CartsService.deleteProductToCart(cid,pid);
 
-        res.status(200).json(`product ${pid} deleted from cart ${cid}`);
+        res.status(200).send({cart: result})
 
 
     } catch (error) {
