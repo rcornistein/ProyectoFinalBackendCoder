@@ -105,14 +105,14 @@ export class CartManagerMongo{
 
                 let product= cart.products.find(prod=> prod.pid._id.toString()==productId); 
           
-
+        
                 if(!product ){
                
                     return ({cart,messageWarning: "This product wasn't in the cart!"})
 
                 }
       
-                if(!product.quantity){
+                if(product.quantity>1){
 
                       
                     
@@ -130,6 +130,7 @@ export class CartManagerMongo{
 
                     let newProducts2=cart.products.filter(prod=>prod.pid._id.toString()!=productId);   
                     cart.products= newProducts2
+                    console.log(cart)
             }
               
                 let res= await this.model.findByIdAndUpdate({"_id": cartId},cart);

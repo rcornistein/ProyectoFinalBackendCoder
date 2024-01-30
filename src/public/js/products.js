@@ -289,20 +289,21 @@ const deleteProductToCart= async(pid) =>{
            const result = await fetch(url, requestOptions)
            const final = await result.json();
  
-        
-     
           if (!final.message){
+
+              
           
              const products=final.cart.products;  
              let totalProducts=0;
      
      
-          if(products.length ){
-             for (const prod of  products) {
-               totalProducts = totalProducts+prod.quantity;
+        
+               
+               for (const prod of  products) {
+                         totalProducts = totalProducts+prod.quantity;
               
-             }
-             console.log(totalProducts);
+                         }
+               
                
              let badge=document.getElementById('badge');
                badge.style.display = "inline";
@@ -312,10 +313,8 @@ const deleteProductToCart= async(pid) =>{
               setCookie ('products', totalProducts.toString(), 1);
         
              alert('Product removed!');
-          }
-          else{
-               alert('Cannot remove product');
-          }
+          
+        
      
           }
           else
