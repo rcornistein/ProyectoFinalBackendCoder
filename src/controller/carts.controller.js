@@ -141,7 +141,7 @@ static delete = async (req,res) => {
 
          const result = await CartsService.deleteProductToCart(cid,pid);
 
-        res.status(200).send({cart: result})
+        res.status(200).send({cart: result.cart, message: result.messageWarning})
 
 
     } catch (error) {

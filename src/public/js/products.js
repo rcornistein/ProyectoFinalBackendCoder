@@ -288,15 +288,16 @@ const deleteProductToCart= async(pid) =>{
          
            const result = await fetch(url, requestOptions)
            const final = await result.json();
-           console.log(final)
+ 
         
      
-          if (final){
+          if (!final.message){
+          
              const products=final.cart.products;  
              let totalProducts=0;
      
      
-     
+          if(products.length ){
              for (const prod of  products) {
                totalProducts = totalProducts+prod.quantity;
               
@@ -311,11 +312,15 @@ const deleteProductToCart= async(pid) =>{
               setCookie ('products', totalProducts.toString(), 1);
         
              alert('Product removed!');
+          }
+          else{
+               alert('Cannot remove product');
+          }
      
           }
           else
           {
-               alert('Cannot remove product');
+               alert(final.message);
           }
      } catch (error) {
      
