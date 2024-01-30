@@ -18,7 +18,7 @@
 
     
     window.alert( message.result);
-   // location.reload();
+   location.reload();
 
     
   } catch (err) {
